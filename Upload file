@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Support Assistant</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #0f172a; color: #fff; margin: 0; padding: 20px; }
+    .chat-box { max-width: 500px; margin: 0 auto; background: #1e293b; padding: 20px; border-radius: 8px; }
+    .msg { padding: 10px; margin-bottom: 10px; border-radius: 5px; }
+    .bot { background: #334155; }
+    .user { background: #6366f1; text-align: right; }
+    .input-group { display: flex; gap: 10px; margin-top: 15px; }
+    input { flex: 1; padding: 10px; border-radius: 5px; border: none; }
+    button { padding: 10px 15px; background: #6366f1; color: white; border: none; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <div class="chat-box">
+    <h2>AI Student Support</h2>
+    <div id="messages">
+      <div class="msg bot">Hello! How can I help you today?</div>
+    </div>
+    <div class="input-group">
+      <input type="text" id="userInput" placeholder="Ask a question...">
+      <button onclick="sendMsg()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    function sendMsg() {
+      let input = document.getElementById("userInput");
+      let text = input.value.trim();
+      if (!text) return;
+
+      let box = document.getElementById("messages");
+      box.innerHTML += `<div class="msg user">${text}</div>`;
+      input.value = "";
+
+      setTimeout(() => {
+        box.innerHTML += `<div class="msg bot">I have processed your request: "${text}".</div>`;
+        box.scrollTop = box.scrollHeight;
+      }, 500);
+    }
+  </script>
+
+</body>
+</html>
